@@ -33,9 +33,8 @@ export function useDashboardData() {
       const prodsData = await prodsRes.json();
       const categoriesData = await categoriesRes.json();
 
-      if (Array.isArray(dashData) && dashData.length > 0) {
-        setDashboard(dashData[0]);
-      }
+      console.log(dashData.data[0])
+        setDashboard(dashData.data[0]);
 
       const extractData = (response: any) => 
         Array.isArray(response) ? response : (Array.isArray(response?.data) ? response.data : []);
@@ -75,6 +74,7 @@ export function useDashboardData() {
     fetchData();
   }, [fetchData]);
 
+  console.log(dashboard)
   return { 
     dashboard, 
     sales, 

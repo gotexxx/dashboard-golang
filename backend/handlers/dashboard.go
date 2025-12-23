@@ -11,7 +11,7 @@ import (
 
 func GetDashboard(c *gin.Context) {
 	var data []models.Dashboard
-	config.DB.Find(&data)
+	config.DB.Preload("Metrics").Preload("Feedback").Find(&data)
 
 	c.JSON(http.StatusOK, gin.H{
 		"data": data,
