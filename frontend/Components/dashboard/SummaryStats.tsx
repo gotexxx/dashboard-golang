@@ -27,7 +27,7 @@ export function SummaryStats({ products, categories, sales }: { products: any[],
     : '0.00';
 
   return (
-    <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="mt-8 flex flex-wrap mx-3 gap-4">
       <StatCard 
         label="Total Products" 
         value={products.length} 

@@ -11,10 +11,6 @@ import { SummaryStats } from "./dashboard/SummaryStats";
 import { FeedbackWidget } from "./dashboard/FeedbackWidget";
 import { ProductsWidget } from "./dashboard/ProductWidget";
 import { DashboardHeader } from "./dashboard/DashboardHeader";
-
-/* -------------------------------------------------------
-   CARD WRAPPER 
-------------------------------------------------------- */
 const DashboardCard = ({
   children,
   className = "",
@@ -57,7 +53,6 @@ export default function Dashboard() {
       SWAPY INIT
   ------------------------------------------------------- */
   useEffect(() => {
-    // Wait for loading to finish so elements exist
     if (!swapyRef.current || loading) return;
 
     if (swapyInstanceRef.current) {
@@ -66,7 +61,7 @@ export default function Dashboard() {
 
     const swapy = createSwapy(swapyRef.current, {
       animation: "spring",
-      grid: { gap: 16 }, // Adjusted gap slightly to fit tighter layout
+      grid: { gap: 16 }, 
       draggable: { enabled: true },
       swapTrigger: "pointerup",
     });
@@ -106,10 +101,6 @@ export default function Dashboard() {
         onRefresh={refetch}
       />
 
-      {/* =====================================================
-           ADVANCED GRID (12-column)
-      ===================================================== */}
-      
       <div
         ref={swapyRef}
         className={`
@@ -117,13 +108,9 @@ export default function Dashboard() {
           lg:grid-cols-12
           gap-4
           relative
-          ${showGrid ? "outline outline-dashed outline-blue-400/40" : ""}
+          ${showGrid ? "outline outline-dashed outline-blue-400 bg-blue-400 " : ""}
         `}
       >
-        {/* ─────────────────────────────────────
-            1. SALES (Primary Hero)
-            Changed to col-span-8 (approx 66% width)
-        ───────────────────────────────────── */}
         <div
           className="lg:col-span-9 min-h-[450px]"
           data-swapy-slot="slot-sales"
@@ -134,18 +121,47 @@ export default function Dashboard() {
             </DashboardCard>
           </div>
         </div>
+ <div
+          className="lg:col-span-3 min-h-[250px]"
+          data-swapy-slot="slot-stats"
+        >
+      <div className="h-full" data-swapy-item="item-stats">
+          <DashboardCard>
+        <SummaryStats
+          products={products}
+          categories={categories}
+          sales={sales}
+        />
+        </DashboardCard>
+      </div>
+      </div>
 
-        {/* ─────────────────────────────────────
-            2. METRICS STACK (Sidebar)
-            Changed to col-span-4 (approx 33% width)
-            Wrapped in a single item to keep them stacked
-        ───────────────────────────────────── */}
+        <div
+          className="lg:col-span-8 min-h-[340px]"
+          data-swapy-slot="slot-categories"
+        >
+          <div className="h-full" data-swapy-item="item-categories">
+            <DashboardCard>
+              <CategoriesWidget categories={categories} />
+            </DashboardCard>
+          </div>
+        </div>
+
+        <div
+          className="lg:col-span-4 min-h-[340px]"
+          data-swapy-slot="slot-products"
+        >
+          <div className="h-full" data-swapy-item="item-products">
+            <DashboardCard>
+              <ProductsWidget products={products} />
+            </DashboardCard>
+          </div>
+        </div>
+          
         <div 
-          className="lg:col-span-3 min-h-[450px]" 
+          className="lg:col-span-5 min-h-[450px]" 
           data-swapy-slot="slot-metrics"
         >
-          {/* We wrap all metrics in one Swapy Item so they move as a group 
-              to fit the "2 items next to each other" requirement */}
               
           <div className="h-full flex flex-col gap-4" data-swapy-item="item-metrics-group">
                 <DashboardCard>
@@ -159,41 +175,8 @@ export default function Dashboard() {
 
           </div>
         </div>
-
-        {/* ─────────────────────────────────────
-            ROW 2: CATEGORIES (8 cols)
-        ───────────────────────────────────── */}
         <div
-          className="lg:col-span-8 min-h-[340px]"
-          data-swapy-slot="slot-categories"
-        >
-          <div className="h-full" data-swapy-item="item-categories">
-            <DashboardCard>
-              <CategoriesWidget categories={categories} />
-            </DashboardCard>
-          </div>
-        </div>
-
-        {/* ─────────────────────────────────────
-            ROW 2: PRODUCTS (4 cols)
-            Moved here to fill the space next to categories
-        ───────────────────────────────────── */}
-        <div
-          className="lg:col-span-4 min-h-[340px]"
-          data-swapy-slot="slot-products"
-        >
-          <div className="h-full" data-swapy-item="item-products">
-            <DashboardCard>
-              <ProductsWidget products={products} />
-            </DashboardCard>
-          </div>
-        </div>
-
-        {/* ─────────────────────────────────────
-            ROW 3: FEEDBACK (Full width or split)
-        ───────────────────────────────────── */}
-        <div
-          className="lg:col-span-12 min-h-[250px]"
+          className="lg:col-span-7 min-h-[250px]"
           data-swapy-slot="slot-feedback"
         >
           <div className="h-full" data-swapy-item="item-feedback">
@@ -202,15 +185,11 @@ export default function Dashboard() {
             </DashboardCard>
           </div>
         </div>
+
+
       </div>
 
-      <div className="mt-12">
-        <SummaryStats
-          products={products}
-          categories={categories}
-          sales={sales}
-        />
-      </div>
+
     </div>
   );
 }

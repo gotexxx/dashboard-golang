@@ -25,7 +25,7 @@ export function SalesChart({ data }: { data: any[] }) {
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="currentColor" className="text-zinc-200 dark:text-zinc-700" />
             <XAxis dataKey="Date" tickFormatter={(t) => new Date(t).toLocaleDateString(undefined, {month:'short', day:'numeric'})} className="text-zinc-500 text-xs" tickLine={false} axisLine={false} />
             <YAxis className="text-zinc-500 text-xs" tickLine={false} axisLine={false} tickFormatter={(val) => `$${val}`} />
-            <Tooltip contentStyle={{backgroundColor: '#18181b', borderColor: '#27272a'}} />
+            <Tooltip contentStyle={{backgroundColor: '#FFF', borderColor: '#F1F1F1'}} />
             <Area type="monotone" dataKey="Revenue" stroke="#6366f1" strokeWidth={2} fill="url(#colorRevenue)" />
           </AreaChart>
         </ResponsiveContainer>

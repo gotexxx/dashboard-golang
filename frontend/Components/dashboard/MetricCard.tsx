@@ -2,8 +2,9 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowDownRight } from 'lucide-react';
 
 export function MetricCard({ metric }: { metric: any }) {
-  const isPositive = metric.Change >= 0;
+  const isPositive = metric.Value >= 0;
 
+  console.log(metric)
   return (
     <motion.div 
       className="w-full h-full p-5 flex flex-col justify-between rounded-xl bg-white/80 dark:bg-zinc-800/50 backdrop-blur-sm border border-zinc-200/50 dark:border-zinc-700/50 shadow-sm overflow-hidden select-none"
