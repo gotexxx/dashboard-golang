@@ -125,7 +125,7 @@ export default function Dashboard() {
             Changed to col-span-8 (approx 66% width)
         ───────────────────────────────────── */}
         <div
-          className="lg:col-span-8 min-h-[450px]"
+          className="lg:col-span-9 min-h-[450px]"
           data-swapy-slot="slot-sales"
         >
           <div className="h-full" data-swapy-item="item-sales">
@@ -141,7 +141,7 @@ export default function Dashboard() {
             Wrapped in a single item to keep them stacked
         ───────────────────────────────────── */}
         <div 
-          className="lg:col-span-4 min-h-[450px]" 
+          className="lg:col-span-3 min-h-[450px]" 
           data-swapy-slot="slot-metrics"
         >
           {/* We wrap all metrics in one Swapy Item so they move as a group 

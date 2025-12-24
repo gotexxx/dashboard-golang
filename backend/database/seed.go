@@ -211,16 +211,16 @@ func SeedData(db *gorm.DB) {
 	var allMetrics []models.Metric
 	for _, dashboard := range dashboards {
 		for _, metricType := range metricTypes {
-			// Create 3 months of metric data
-			for month := 0; month < 1; month++ {
+			// Create 1 months of metric data
+			for month := 0; month < 2; month++ {
 				value := metricType.min + rand.Float64()*(metricType.max-metricType.min)
 
 				// Add some trending (increase or decrease)
 				trend := 1.0
 				if month == 1 {
-					trend = 1.05
+					trend = 0.85
 				} else if month == 2 {
-					trend = 1.1
+					trend = 1.3
 				}
 				value *= trend
 
